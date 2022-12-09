@@ -1,0 +1,24 @@
+
+C
+java:S1604"(Make this anonymous inner class a lambda(ˆ˜•çÿÿÿÿÿ
+=
+java:S1604"(Make this anonymous inner class a lambda(Îåò(
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÁÕŒüÿÿÿÿ
+V
+java:S1948
+";Make "controladorEstacionamento" transient or serializable.(¸÷ñ¢ıÿÿÿÿ
+X
+java:S1854"=Remove this useless assignment to local variable "uiEstadia".(ë—ÄĞûÿÿÿÿ
+I
+java:S1481".Remove this unused "uiEstadia" local variable.(ë—ÄĞûÿÿÿÿ
+Z
+java:S1854"?Remove this useless assignment to local variable "uiPagamento".(§¯»úûÿÿÿÿ
+K
+java:S1481"0Remove this unused "uiPagamento" local variable.(§¯»úûÿÿÿÿ
+H
+java:S1135"2Complete the task associated to this TODO comment.(¡ç‚Ï
+Q	java:S125#"<This block of commented-out lines of code should be removed.(Ë³¯µ
+f
+java:S3252)"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ÒÆ‡’8áêë”Ï0
+R
+java:S1144"7Remove this unused private "createUIComponents" method.(Á›°çıÿÿÿÿ

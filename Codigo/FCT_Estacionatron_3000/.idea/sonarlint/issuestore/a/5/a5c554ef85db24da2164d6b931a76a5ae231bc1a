@@ -1,0 +1,27 @@
+
+k	java:S117,"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕŸ‹¯ÿÿÿÿÿ
+C
+java:S1604&"(Make this anonymous inner class a lambda(ˆ˜•çÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÁÕŒüÿÿÿÿ
+V
+java:S1948";Make "controladorEstacionamento" transient or serializable.(©ıÖ²úÿÿÿÿ
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(Š¿«Òşÿÿÿÿ8‘ßÍ¡Ï0
+g
+java:S3252%"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ
+_
+java:S1126F"BReplace this if-then-else statement by a single method invocation.(È§ßâ8üŠÓ¡Ï0
+_
+java:S1126S"BReplace this if-then-else statement by a single method invocation.(È§ßâ8—™×¡Ï0
+X
+java:S1068"=Remove this unused "controladorEstacionamento" private field.(©ıÖ²úÿÿÿÿ
+E
+java:S1068"/Remove this unused "labelModelo" private field.(±á½ª
+D
+java:S1068".Remove this unused "labelPlaca" private field.(ôçóî
+C
+java:S1068"-Remove this unused "labelNome" private field.(¬Ñ‚—
+G
+java:S1068",Remove this unused "labelCPF" private field.(º“Åúÿÿÿÿ
+G
+java:S1068"1Remove this unused "labelTelefone" private field.(øªÃÍ
