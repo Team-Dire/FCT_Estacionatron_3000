@@ -11,13 +11,13 @@ public class ControladorEstacionamento {
                                   String nomeCompleto, String CPF, String telefone, boolean diaria){
         Date entrada = new Date();
         Estadia estadia = null;
-        /*
+
         //verifica se a entrada está dentro do horário de funcionamento do estacionamento
         if(entrada.getHours() < 6 || entrada.getHours() > 18){
             //verifica se a entrada ainda está dentro do horário de tolerância
             if(!(entrada.getHours() == 5 && entrada.getMinutes() >= 50) || !(entrada.getHours() == 18 && entrada.getMinutes() <= 10))
                 return estadia;
-        }*/
+        }
         estadia = new Estadia().admitirVeiculo(modelo, placa, tipo, nomeCompleto, CPF, telefone, diaria, entrada);
         if(tipo == TipoVeiculo.motocicleta){
             estadiasMoto.add(estadia);
