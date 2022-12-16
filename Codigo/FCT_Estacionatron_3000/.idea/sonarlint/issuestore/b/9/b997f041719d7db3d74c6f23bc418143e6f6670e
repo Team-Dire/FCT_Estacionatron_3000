@@ -1,0 +1,29 @@
+
+Q	java:S107"<Method has 8 parameters, which is greater than 7 authorized.(Î¦ê
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌŞªıÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ´Æáüÿÿÿÿ
+u
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "veiculo".(–³ƒİ
+w
+java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "motorista".(ëÑ½ø
+|
+java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "pagamento".(Ø›·öıÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¿ÀŠ­
+k
+java:S1450
+"URemove the "diaria" field and declare it as a local variable in the relevant methods.(‡–Ñ®
+n
+java:S1450"XRemove the "motorista" field and declare it as a local variable in the relevant methods.(ÄÉá÷
+P
+java:S1117":Rename "veiculo" which hides the field declared at line 7.(–³ƒİ
+R
+java:S1117"<Rename "motorista" which hides the field declared at line 6.(ëÑ½ø
+W
+java:S1117"<Rename "pagamento" which hides the field declared at line 5.(Ø›·öıÿÿÿÿ
+N
+java:S1117'"8Rename "saida" which hides the field declared at line 9.(º•ö¶
+C
+java:S1068"-Remove this unused "motorista" private field.(ÄÉá÷
+@
+java:S1068
+"*Remove this unused "diaria" private field.(‡–Ñ®

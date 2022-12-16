@@ -1,0 +1,24 @@
+
+J
+java:S3740"/Provide the parametrized type for this generic.(Â —Íøÿÿÿÿ
+=
+java:S1604&"(Make this anonymous inner class a lambda(Îåò(
+C
+java:S1604F"(Make this anonymous inner class a lambda(şö¿Úıÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÁÕŒüÿÿÿÿ
+V
+java:S1948";Make "controladorEstacionamento" transient or serializable.(©ıÖ²úÿÿÿÿ
+g
+java:S3252#"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ
+X
+java:S1128";Remove this unused import 'java.beans.PropertyChangeEvent'.(’¢œ§8¹ˆ¢Ï0
+`
+java:S1128">Remove this unused import 'java.beans.PropertyChangeListener'.(ş¼ÃÀùÿÿÿÿ8¹ˆ¢Ï0
+X
+java:S1068"=Remove this unused "controladorEstacionamento" private field.(©ıÖ²úÿÿÿÿ
+M
+java:S1068"7Remove this unused "labelDadosPagamento" private field.(¼­¡Ó
+F
+java:S1068"0Remove this unused "labelVeiculo" private field.(Ü¹Œ×
+I
+java:S1068"3Remove this unused "labelValorTotal" private field.(‘×ÒŸ

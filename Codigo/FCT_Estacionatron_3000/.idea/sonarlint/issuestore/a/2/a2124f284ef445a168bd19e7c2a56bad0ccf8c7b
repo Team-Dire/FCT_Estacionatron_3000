@@ -1,0 +1,29 @@
+
+t
+java:S2293;"YReplace the type specification in this constructor call with the diamond operator ("<>").(¡„•¢üÿÿÿÿ
+t
+java:S2293<"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ší™Ìøÿÿÿÿ
+o
+java:S2293@"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ø´¨ñ
+L
+java:S1066"/Merge this if statement with the enclosing one.(ÿôöŠ8åÁÍ¢Ï0
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ŸÑÔùÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¿ÀŠ­
+M
+java:S1874"0Remove this use of "getHours"; it is deprecated.(ûãš÷8ÄÊÍ¢Ï0
+M
+java:S1874"0Remove this use of "getHours"; it is deprecated.(ûãš÷8ÆÊÍ¢Ï0
+M
+java:S1874"0Remove this use of "getHours"; it is deprecated.(ÿôöŠ8ÉÊÍ¢Ï0
+O
+java:S1874"2Remove this use of "getMinutes"; it is deprecated.(ÿôöŠ8ËÊÍ¢Ï0
+M
+java:S1874"0Remove this use of "getHours"; it is deprecated.(ÿôöŠ8ÍÊÍ¢Ï0
+O
+java:S1874"2Remove this use of "getMinutes"; it is deprecated.(ÿôöŠ8ÏÊÍ¢Ï0
+A
+java:S1172"+Remove this unused method parameter "tipo".(ƒâ³
+K
+java:S1172-"5Remove this unused method parameter "dadosPagamento".(Ğ½š¸
+K
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8‰—“¡Ï0
