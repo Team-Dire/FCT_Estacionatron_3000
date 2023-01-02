@@ -6,7 +6,9 @@ import java.util.Date;
 public class ControladorEstacionamento {
     private ArrayList<Estadia> estadiasCarro;
     private ArrayList<Estadia> estadiasMoto;
-
+    private int totalVagasMotos;
+    private int totalVagasCarro;
+    private boolean estacionamentoAberto;
     public Estadia admitirEstadia(String modelo, String placa, TipoVeiculo tipo,
                                   String nomeCompleto, String CPF, String telefone, boolean diaria){
         Date entrada = new Date();
@@ -18,12 +20,15 @@ public class ControladorEstacionamento {
             if(!(entrada.getHours() == 5 && entrada.getMinutes() >= 50) || !(entrada.getHours() == 18 && entrada.getMinutes() <= 10))
                 return estadia;
         }
-        estadia = new Estadia().admitirVeiculo(modelo, placa, tipo, nomeCompleto, CPF, telefone, diaria, entrada);
-        if(tipo == TipoVeiculo.motocicleta){
+        if(tipo == TipoVeiculo.motocicleta && totalVagasMotos > 0){
+            estadia = new Estadia().admitirVeiculo(modelo, placa, tipo, nomeCompleto, CPF, telefone, diaria, entrada);
             estadiasMoto.add(estadia);
+            totalVagasMotos--;
         }
-        else{
+        else if(tipo == TipoVeiculo.carro && totalVagasCarro > 0){
+            estadia = new Estadia().admitirVeiculo(modelo, placa, tipo, nomeCompleto, CPF, telefone, diaria, entrada);
             estadiasCarro.add(estadia);
+            totalVagasCarro--;
         }
         return estadia;
     }
@@ -73,5 +78,43 @@ public class ControladorEstacionamento {
             }
         }
         return arrayListVeiculos.toArray();
+    }
+
+    public void abrirEstacionamento(int totalVagasCarro, int totalVagasMotos){
+        this.estacionamentoAberto = true;
+        this.totalVagasCarro = totalVagasCarro;
+        this.totalVagasMotos = totalVagasMotos;
+    }
+
+    public String fecharEstacionamento() {
+        String veiculosFora = "";
+        for (Estadia estadia : estadiasCarro) {
+            if (!estadia.paga()) {
+                estadia.setarFicouAposFechamento();
+                veiculosFora += estadia.imprimirVeiculo();
+                String dadosMotorista[] = estadia.informacaoMotorista();
+                veiculosFora += "\nMotorista: " + dadosMotorista[1] + "Telefone: " + dadosMotorista[2] + "\n";
+            }
+        }
+        for (Estadia estadia : estadiasMoto) {
+            if (!estadia.paga()) {
+                estadia.setarFicouAposFechamento();
+                veiculosFora += estadia.imprimirVeiculo();
+                String dadosMotorista[] = estadia.informacaoMotorista();
+                veiculosFora += "\nMotorista: " + dadosMotorista[1] + "Telefone: " + dadosMotorista[2] + "\n";
+            }
+        }
+        return veiculosFora;
+    }
+
+    public boolean isEstacionamentoAberto() {
+        return estacionamentoAberto;
+    }
+
+    public int getTotalVagasMotos(){
+        return totalVagasMotos;
+    }
+    public int getTotalVagasCarro(){
+        return totalVagasCarro;
     }
 }

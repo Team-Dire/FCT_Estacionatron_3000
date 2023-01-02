@@ -10,18 +10,22 @@ public class Pagamento {
         this.confirmado = false;
     }
 
-    public boolean finalizarPagamento(Date entrada, Date saida, String dadosPagamento){
-        float valor = calcularPagamento(entrada, saida);
+    public boolean finalizarPagamento(Date entrada, Date saida, String dadosPagamento, boolean ficouAposPagamento){
+        float valor = calcularPagamento(entrada, saida, ficouAposPagamento);
         this.confirmado = pagar(dadosPagamento, valor);
         return confirmado;
     }
 
-    public float calcularPagamento(Date entrada,Date saida){
+    public float calcularPagamento(Date entrada,Date saida, boolean ficouAposPagamento){
+        float valor = 0.f;
+        if(ficouAposPagamento){
+            valor+=30.f;
+        }
         if (this.diaria){
-            return 14.f;
+            return valor + 14.f;
         }else{
             long diffHours = (saida.getTime() - entrada.getTime())/(60 * 60 * 1000);
-            float valor = 8.f;
+            valor += 8.f;
             if (diffHours > 4) {
                 valor = diffHours + valor;
             }

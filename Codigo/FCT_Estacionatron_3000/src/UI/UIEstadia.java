@@ -27,6 +27,9 @@ public class UIEstadia extends JFrame{
     private JRadioButton radioButtonCarro;
     private JRadioButton radioButtonMotocicleta;
     private JLabel labelResultado;
+    private JLabel labelVagasCarro;
+    private JLabel labelVagasMoto;
+    private JLabel labelVagas;
 
     public UIEstadia(ControladorEstacionamento controladorEstacionamento) {
         this.controladorEstacionamento = controladorEstacionamento;
@@ -35,6 +38,8 @@ public class UIEstadia extends JFrame{
         this.setSize(500, 600);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.labelVagasCarro.setText(Integer.toString(controladorEstacionamento.getTotalVagasCarro()));
+        this.labelVagasMoto.setText(Integer.toString(controladorEstacionamento.getTotalVagasMotos()));
         btnNovaEstadia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -10,4 +10,9 @@ public class Motorista {
         this.CPF = CPF;
         this.phone = phone;
     }
+
+    public String[] imprimirMotorista(){
+        String dados[] = {this.CPF, this.nomeCompleto, this.phone};
+        return dados;
+    }
 }

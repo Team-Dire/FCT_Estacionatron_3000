@@ -8,6 +8,7 @@ public class Estadia {
     private Date entrada;
     private Date saida;
     private boolean diaria;
+    private boolean ficouAposFechamento;
 
     public Veiculo criarVeiculo(String modelo, String placa, TipoVeiculo tipo){
         Veiculo veiculo = new Veiculo(modelo, placa, tipo);
@@ -37,7 +38,7 @@ public class Estadia {
 
     public boolean sairVeiculo(String dadosPagamento){
         Date saida = new Date();
-        boolean pago = this.pagamento.finalizarPagamento(entrada, saida, dadosPagamento);
+        boolean pago = this.pagamento.finalizarPagamento(entrada, saida, dadosPagamento, ficouAposFechamento);
         if(pago){
             this.saida = saida;
         }
@@ -53,10 +54,18 @@ public class Estadia {
     }
 
     public float calcularValorEstadia(){
-        return this.pagamento.calcularPagamento(this.entrada, new Date());
+
+        return this.pagamento.calcularPagamento(entrada, new Date(), ficouAposFechamento);
     }
 
     public Veiculo getVeiculo() {
         return veiculo;
+    }
+
+    public void setarFicouAposFechamento(){
+        this.ficouAposFechamento = true;
+    }
+    public String[] informacaoMotorista(){
+        return this.motorista.imprimirMotorista();
     }
 }
