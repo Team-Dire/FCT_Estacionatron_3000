@@ -1,12 +1,12 @@
 package Classes;
-import java.util.Date;
+import java.util.Calendar;
 
 public class Estadia {
     private Pagamento pagamento;
     private Motorista motorista;
     private Veiculo veiculo;
-    private Date entrada;
-    private Date saida;
+    private Calendar entrada;
+    private Calendar saida;
     private boolean diaria;
     private boolean ficouAposFechamento;
 
@@ -26,7 +26,7 @@ public class Estadia {
     }
 
     public Estadia admitirVeiculo(String modelo, String placa, TipoVeiculo tipo,
-                                         String nomeCompleto, String CPF, String telefone, boolean diaria, Date entrada){
+                                         String nomeCompleto, String CPF, String telefone, boolean diaria, Calendar entrada){
         this.veiculo = new Veiculo(modelo, placa, tipo);
         this.motorista = new Motorista(nomeCompleto, CPF, telefone);
         this.entrada = entrada;
@@ -37,7 +37,7 @@ public class Estadia {
     }
 
     public boolean sairVeiculo(String dadosPagamento){
-        Date saida = new Date();
+        Calendar saida = Calendar.getInstance();
         boolean pago = this.pagamento.finalizarPagamento(entrada, saida, dadosPagamento, ficouAposFechamento);
         if(pago){
             this.saida = saida;
@@ -55,7 +55,7 @@ public class Estadia {
 
     public float calcularValorEstadia(){
 
-        return this.pagamento.calcularPagamento(entrada, new Date(), ficouAposFechamento);
+        return this.pagamento.calcularPagamento(entrada, Calendar.getInstance(), ficouAposFechamento);
     }
 
     public Veiculo getVeiculo() {

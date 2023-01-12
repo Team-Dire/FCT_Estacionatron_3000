@@ -1,8 +1,7 @@
 package Classes;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Date;
-
+import java.util.Calendar;
 public class ControladorEstacionamento {
     private ArrayList<Estadia> estadiasCarro;
     private ArrayList<Estadia> estadiasMoto;
@@ -11,13 +10,13 @@ public class ControladorEstacionamento {
     private boolean estacionamentoAberto;
     public Estadia admitirEstadia(String modelo, String placa, TipoVeiculo tipo,
                                   String nomeCompleto, String CPF, String telefone, boolean diaria){
-        Date entrada = new Date();
+        Calendar entrada = Calendar.getInstance();
         Estadia estadia = null;
 
         //verifica se a entrada está dentro do horário de funcionamento do estacionamento
-        if(entrada.getHours() < 6 || entrada.getHours() > 18){
+        if(entrada.HOUR < 6 || entrada.HOUR > 18){
             //verifica se a entrada ainda está dentro do horário de tolerância
-            if(!(entrada.getHours() == 5 && entrada.getMinutes() >= 50) || !(entrada.getHours() == 18 && entrada.getMinutes() <= 10))
+            if(!(entrada.HOUR == 5 && entrada.MINUTE >= 50) || !(entrada.HOUR == 18 && entrada.MINUTE <= 10))
                 return estadia;
         }
         if(tipo == TipoVeiculo.motocicleta && totalVagasMotos > 0){
@@ -57,7 +56,15 @@ public class ControladorEstacionamento {
 
     public boolean sairVeiculo(TipoVeiculo tipo, String modelo, String placa, String dadosPagamento){
         Estadia estadia = buscarEstadia(tipo, modelo, placa);
-        return estadia.sairVeiculo(dadosPagamento);
+        boolean pagamentoValido = estadia.sairVeiculo(dadosPagamento);
+        if(pagamentoValido){
+            if(tipo == TipoVeiculo.motocicleta){
+                totalVagasMotos++;
+            }else {
+                totalVagasCarro++;
+            }
+        }
+        return pagamentoValido;
     }
 
     public ControladorEstacionamento() {
@@ -104,6 +111,7 @@ public class ControladorEstacionamento {
                 veiculosFora += "\nMotorista: " + dadosMotorista[1] + "Telefone: " + dadosMotorista[2] + "\n";
             }
         }
+        this.estacionamentoAberto = false;
         return veiculosFora;
     }
 
