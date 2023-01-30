@@ -7,22 +7,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UIMainMenu extends JFrame {
-    private final ControladorEstacionamento controladorEstacionamento = new ControladorEstacionamento();
+    private final ControladorEstacionamento controladorEstacionamento = ControladorEstacionamento.getInstance();
     private JPanel panelMain;
     private JButton btnNovaEstadia;
     private JButton btnPagar;
+    private JButton btnAbrir;
+    private JButton btnFechar;
+    private JLabel labelAviso;
 
     public UIMainMenu() {
         btnNovaEstadia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UIEstadia uiEstadia = new UIEstadia(controladorEstacionamento);
+                if(controladorEstacionamento.isEstacionamentoAberto()){
+                    UIEstadia uiEstadia = new UIEstadia(controladorEstacionamento);
+                }else{
+                    labelAviso.setText("Estacionamento ainda não aberto!");
+                }
+
             }
         });
         btnPagar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UIPagamento uiPagamento = new UIPagamento(controladorEstacionamento);
+            }
+        });
+        btnFechar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(controladorEstacionamento.isEstacionamentoAberto()){
+                    UIFechamento uiFechamento = new UIFechamento(controladorEstacionamento);
+                }else{
+                    labelAviso.setText("Estacionamento ainda não aberto!");
+                }
+
+            }
+        });
+        btnAbrir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(controladorEstacionamento.isEstacionamentoAberto()){
+                    labelAviso.setText("Estacionamento já foi aberto!");
+                }else{
+                    UIAbertura uiAbertura = new UIAbertura(controladorEstacionamento);
+                }
             }
         });
     }
