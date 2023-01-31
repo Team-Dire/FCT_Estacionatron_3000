@@ -1,7 +1,9 @@
 package Classes;
 
 
-public class Veiculo {
+import java.io.Serializable;
+
+public class Veiculo implements Serializable {
     private String modelo;
     private String placa;
     private TipoVeiculo tipoVeiculo;
@@ -12,15 +14,14 @@ public class Veiculo {
         this.tipoVeiculo = tipoVeiculo;
     }
 
-    public String imprimirVeiculo(){
-        String dados = "";
+    public String[] dadosVeiculo(){
         if(tipoVeiculo == TipoVeiculo.motocicleta){
-            dados += "Motocicleta ";
+            String dados[] = {"Motocicleta", this.modelo, this.placa};
+            return dados;
         }else{
-            dados += "Carro ";
+            String dados[] = {"Carro", this.modelo, this.placa};
+            return dados;
         }
-        dados += this.modelo + " Placa: " + this.placa;
-        return dados;
     }
 
     public String getModelo() {
@@ -29,5 +30,9 @@ public class Veiculo {
 
     public String getPlaca() {
         return placa;
+    }
+
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
     }
 }

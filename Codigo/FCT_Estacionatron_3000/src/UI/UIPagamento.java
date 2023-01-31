@@ -3,11 +3,9 @@ package UI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import Classes.ControladorEstacionamento;
-import Classes.TipoVeiculo;
+
 public class UIPagamento extends JFrame{
     private ControladorEstacionamento controladorEstacionamento;
     private JPanel panelMain;
@@ -20,14 +18,11 @@ public class UIPagamento extends JFrame{
     private JLabel labelValorTotal;
     private JLabel labelValorCobrado;
     private JButton btnCalcularValor;
+    private JTextField textNumeroEstadia;
+    private JButton btnPagamentoManual;
 
     public UIPagamento(ControladorEstacionamento controladorEstacionamento) {
         this.controladorEstacionamento = controladorEstacionamento;
-        //população da comboBox com os veículos do estacionamento
-        Object[] veiculos = controladorEstacionamento.veiculosEstacionados();
-        for(Object veiculo: veiculos){
-            comboBoxVeiculos.addItem(veiculo);
-        }
         this.setContentPane(this.panelMain);
         this.setTitle("FCT Estacionatron 3000");
         this.setSize(400, 600);
@@ -38,27 +33,18 @@ public class UIPagamento extends JFrame{
         btnPagar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //adquire a placa do veículo
-                String[] dadosVeiculo = comboBoxVeiculos.getSelectedItem().toString().split(" ");
-                String tipo = dadosVeiculo[0];
-                String modelo = dadosVeiculo[1];
-                String placa = dadosVeiculo[dadosVeiculo.length-1];
+                int numeroEstadia = Integer.parseInt(textNumeroEstadia.getText());
                 //adquire o valor do pagamento
                 String valor = textFieldValorPagamento.getText().replace(",", ".");
                 //realiza o pagamento
-                boolean realizarPagamento;
-                if(tipo.equals("Motocicleta")){
-                    realizarPagamento = controladorEstacionamento.sairVeiculo(TipoVeiculo.motocicleta, modelo, placa, valor);
-                }else{
-                    realizarPagamento = controladorEstacionamento.sairVeiculo(TipoVeiculo.carro, modelo, placa, valor);
-                }
+                boolean realizarPagamento = controladorEstacionamento.sairVeiculo(numeroEstadia, valor);
                 if(realizarPagamento){
                     float troco = Float.parseFloat(valor) - Float.parseFloat(labelValorCobrado.getText());
                     if(troco > 0){
                         labelResultado.setText("Troco: " + Float.toString(troco));
                         btnPagar.setEnabled(false);
                         btnCalcularValor.setEnabled(false);
-                        comboBoxVeiculos.setEnabled(false);
+                        textNumeroEstadia.setEnabled(false);
                     }else{
                         dispose();
                     }
@@ -67,25 +53,29 @@ public class UIPagamento extends JFrame{
                 }
             }
         });
+        //calcula o valor do estacionamento
         btnCalcularValor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //adquire a placa do veículo
-                String[] dadosVeiculo = comboBoxVeiculos.getSelectedItem().toString().split(" ");
-                String tipo = dadosVeiculo[0];
-                String modelo = dadosVeiculo[1];
-                String placa = dadosVeiculo[dadosVeiculo.length-1];
-                //adquire o valor do pagamento
-                String valor = textFieldValorPagamento.getText();
+                int numeroEstadia = Integer.parseInt(textNumeroEstadia.getText());
                 //exibe o valor da estadia
                 float valorFinal;
-                if(tipo.equals("Motocicleta")){
-                    valorFinal = controladorEstacionamento.calcularValorEstadia(TipoVeiculo.motocicleta, modelo, placa, valor);
+                valorFinal = controladorEstacionamento.calcularValorEstadia(numeroEstadia);
+                if(valorFinal == 0.f){
+                    labelValorCobrado.setText("Estadia já paga ou não existe!");
+                    btnPagar.setEnabled(false);
                 }else{
-                    valorFinal = controladorEstacionamento.calcularValorEstadia(TipoVeiculo.carro, modelo, placa, valor);
+                    labelValorCobrado.setText(Float.toString(valorFinal));
+                    btnPagar.setEnabled(true);
                 }
-                labelValorCobrado.setText(Float.toString(valorFinal));
-                btnPagar.setEnabled(true);
+            }
+        });
+        btnPagamentoManual.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UIPagamentoManual uiPagamentoManual = new UIPagamentoManual(controladorEstacionamento);
+                dispose();
             }
         });
     }

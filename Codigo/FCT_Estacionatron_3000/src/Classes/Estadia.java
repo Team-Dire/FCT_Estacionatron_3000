@@ -1,13 +1,20 @@
 package Classes;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.Calendar;
 
-public class Estadia {
+public class Estadia implements Serializable {
     private Pagamento pagamento;
     private Motorista motorista;
     private Veiculo veiculo;
-    private Date entrada;
-    private Date saida;
+    private Calendar entrada;
+    private Calendar saida;
     private boolean diaria;
+    private boolean ficouAposFechamento;
+    private int numeroEstadia;
+    private static int count;
+    public Estadia(){
+        numeroEstadia = count++;
+    }
 
     public Veiculo criarVeiculo(String modelo, String placa, TipoVeiculo tipo){
         Veiculo veiculo = new Veiculo(modelo, placa, tipo);
@@ -25,7 +32,7 @@ public class Estadia {
     }
 
     public Estadia admitirVeiculo(String modelo, String placa, TipoVeiculo tipo,
-                                         String nomeCompleto, String CPF, String telefone, boolean diaria, Date entrada){
+                                         String nomeCompleto, String CPF, String telefone, boolean diaria, Calendar entrada){
         this.veiculo = new Veiculo(modelo, placa, tipo);
         this.motorista = new Motorista(nomeCompleto, CPF, telefone);
         this.entrada = entrada;
@@ -36,8 +43,8 @@ public class Estadia {
     }
 
     public boolean sairVeiculo(String dadosPagamento){
-        Date saida = new Date();
-        boolean pago = this.pagamento.finalizarPagamento(entrada, saida, dadosPagamento);
+        Calendar saida = Calendar.getInstance();
+        boolean pago = this.pagamento.finalizarPagamento(entrada, saida, dadosPagamento, ficouAposFechamento);
         if(pago){
             this.saida = saida;
         }
@@ -48,15 +55,49 @@ public class Estadia {
         return this.saida != null;
     }
 
-    public String imprimirVeiculo() {
-        return this.veiculo.imprimirVeiculo();
+    public String[] dadosVeiculo() {
+        return this.veiculo.dadosVeiculo();
     }
 
     public float calcularValorEstadia(){
-        return this.pagamento.calcularPagamento(this.entrada, new Date());
+        return this.pagamento.calcularPagamento(entrada, Calendar.getInstance(), ficouAposFechamento);
     }
 
     public Veiculo getVeiculo() {
         return veiculo;
+    }
+
+    public Motorista getMotorista(){
+        return motorista;
+    }
+
+    public int getNumeroEstadia(){
+        return numeroEstadia;
+    }
+
+    public void setarFicouAposFechamento(){
+        this.ficouAposFechamento = true;
+    }
+    public String[] informacaoMotorista(){
+        return this.motorista.dadosMotorista();
+    }
+    public String dadosEstadia(){
+        String estadia = String.valueOf(numeroEstadia);
+        String hora = String.valueOf(entrada.HOUR_OF_DAY);
+        String minuto = String.valueOf(entrada.MINUTE);
+        String dadosVeiculo[] = this.getVeiculo().dadosVeiculo();
+        String dadosMotorista[] = this.getMotorista().dadosMotorista();
+        return String.format("""
+                Estadia: %s
+                Entrada: %s:%s
+                Veículo:
+                Tipo: %s
+                Modelo: %s
+                Placa: %s
+                Motorista:
+                CPF: %s
+                Nome: %s
+                Telefone: %s
+                """, estadia, hora, minuto, dadosVeiculo[0], dadosVeiculo[1], dadosVeiculo[2], dadosMotorista[0], dadosMotorista[1], dadosMotorista[2]);
     }
 }
